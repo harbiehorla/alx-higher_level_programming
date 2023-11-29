@@ -1,35 +1,27 @@
-/*
- * File: 10-check_cycle.c
- */
-
-#include <stdlib.h>
 #include "lists.h"
 
 /**
- * check_cycle - Checks if a singly-linked list contains a cycle.
- * @list: A singly-linked list.
- *
- * Return: If there is no cycle - 0.
- *         If there is a cycle - 1.
+ * check_cycle - Function in C that checks if a singly linked list
+ *               has a cycle in it.
+ * @list: head
+ * Return: 1 if true and 0 if false
  */
 int check_cycle(listint_t *list)
 {
-	listint_t *turtle, *hare;
+	listint_t *slow, *fast;
 
-	if (list == NULL || list->next == NULL)
-		return (0);
-
-	turtle = list->next;
-	hare = list->next->next;
-
-	while (turtle && hare && hare->next)
+	slow = list->next;
+	fast = list->next->next;
+	while (slow && fast && fast->next)
 	{
-		if (turtle == hare)
+		/**
+		 * Slow pointer will move one node per iteration whereas
+		 * fast node will move two nodes per iteration
+		 */
+		if (slow == fast)
 			return (1);
-
-		turtle = turtle->next;
-		hare = hare->next->next;
+		slow = slow->next;
+		fast = fast->next->next;
 	}
-
 	return (0);
 }
