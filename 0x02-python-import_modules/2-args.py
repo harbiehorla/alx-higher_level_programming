@@ -6,4 +6,3 @@ if __name__ == "__main__":
     print(f"{length} {'argument' if length == 1 else 'arguments'}{'.' if length == 0 else ':'}")
     for i in range(1, length + 1):
         print(f"{i}: {argv[i]}")
-
